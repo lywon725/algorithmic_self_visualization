@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyle } from './styles/GlobalStyle';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import Home from './pages/Home';
+import My_profile from './pages/My_profile';
+import Search from './pages/Search';
+
+import Navbar from './components/Navbar/Navbar';
+
+
+const Layout = () =>{
+  return (
+    <>
+      <Navbar />
+      <Outlet /> 
+    </>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyle />
+      <Routes >
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/My_profile" element={<My_profile />}/>
+          <Route path="/Search" element={<Search />}/>
+        </Route>
+      </Routes>
     </div>
   );
 }
